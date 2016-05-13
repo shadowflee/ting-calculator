@@ -1,35 +1,29 @@
 #include <stdio.h>
+#define RATE_DEV 6.0
+#define RATE_TXT 0.0025
+#define RATE_MIN 0.015
+#define RATE_MBS 0.019
 // made by shadowflee
 
-int main(int argc, char *argv[]){
-    int text, msg, data, device;
+int main() {
+    int text, min, data, device;
+    double total; 
 
     printf ("how many devices do you have: ");
     scanf ("%d",&device);
-    printf ("%d\n",device);
 
     printf ("How many text do you send a month: ");
     scanf ("%d",&text);
-    printf ("%d\n",text);
 
     printf ("how many minutes do you use a month: ");
-    scanf ("%d",&msg);
-    printf ("%d\n",msg);
+    scanf ("%d",&min);
 
-    printf ("mb/s of data a month: ");
+    printf ("mb of data a month: ");
     scanf ("%d",&data);
-    printf ("%d\n",data);
 
-    double adata = ((double) data) * 0.019;
-    double amsg = ((double) msg) * 0.015;
-    double atext = ((double) text) * .0025;
-    double adevice = ((double) device) * 6;
+    total = RATE_DEV * device + RATE_TXT * text + RATE_MIN * min + RATE_MBS * data;
 
-    double total = adata + amsg + atext + adevice;
-
-    printf("your total bill if using ting would be: ");
-    printf("%f\n",total);
+    printf("your total bill if using ting would be: $%.2f\n", total );
 
     return 0;
-
 }
